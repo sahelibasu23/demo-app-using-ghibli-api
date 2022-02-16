@@ -24,7 +24,7 @@ Overall, there are a lot of terms, acronyms and concepts to understand - HTTP, A
 especially when API documentation assumes you already know what to do.
 
 # SETTING UP
-What is our objective? We want to get the data for all Studio Ghibli films and display the titles and descriptions in a grid. 
+What is our objective? We want to get the data for all `Studio Ghibli` films and display the titles and descriptions in a grid. 
 For some background knowledge, Studio Ghibli is a Japanese animation studio that produced several films, such as Spirited Away,etc.
 
 We're going to start by creating an index.html file in a new directory. 
@@ -54,7 +54,9 @@ This file is complete and will not change. We'll be using JavaScript to add ever
 </html>
 ```
 
-Since this article is focused on the concepts of APIs and JavaScript, I will not be explaining how the CSS works. We will create a style.css that will be used to create a grid. 
+Since this article is focused on the concepts of APIs and JavaScript, 
+I will not be explaining how the CSS works. 
+We will create a style.css that will be used to create a grid. 
 
 #### style.css
 
@@ -88,19 +90,24 @@ Since this article is focused on the concepts of APIs and JavaScript, I will not
 ```
 
 # CONNECTING TO THE API
-Let's take a look at the Studio Ghibli API documentation. This API was created to help developers learn how to interact with resources using HTTP requests, which is perfect for us here. Since an API can be accessed by many different methods - JavaScript, PHP, Ruby, Python and so on - the documentation for most APIs doesn't tend to give specific instructions for how to connect.
+Let's take a look at the [Studio Ghibli API documentation]().
+This API was created to help developers learn how to interact with resources using HTTP requests, which is perfect for us here. 
+Since an API can be accessed by many different methods - JavaScript, PHP, Ruby, Python and so on - the documentation for most APIs doesn't tend to give specific instructions for how to connect.
 
 We can see from this documentation that it tells us we can make requests with curl or regular REST calls, but we might not have a clue how to do that yet.
 
 # OBTAINING THE API ENDPOINT
 To get started, let's scroll to the films section. On the right you'll see `GET /films`. It will show us the URL of our API endpoint, https://ghibliapi.herokuapp.com/films. Clicking on that link will display an array of objects in JSON.
 
-If you do not have an extension on your browser for viewing JSON files, add one now, such as JSON View. This will make reading JSON much, much easier. Remember, if you've never worked with JSON, read this [prerequisite article]().
+If you do not have an extension on your browser for viewing JSON files, add one now, such as JSON View. This will make reading JSON much, much easier.
 
 # RETRIEVING THE DATA WITH AN HTTP REQUEST
-Before we try to put anything on the front end of the website, let's open a connection the API. We'll do so using XMLHttpRequest objects, which is a way to open files and make an HTTP request.
+Before we try to put anything on the front end of the website, let's open a connection the API.
+We'll do so using `XMLHttpRequest` objects, which is a way to open files and make an HTTP request.
 
-We'll create a request variable and assign a new XMLHttpRequest object to it. Then we'll open a new connection with the open() method - in the arguments we'll specify the type of request as GET as well as the URL of the API endpoint. The request completes and we can access the data inside the onload function. When we're done, we'll send the request.
+We'll create a request variable and assign a new `XMLHttpRequest` object to it. 
+Then we'll open a new connection with the `open()` method - in the arguments we'll specify the type of request as `GET` as well as the URL of the API endpoint.
+The request completes and we can access the data inside the onload function. When we're done, we'll send the request.
 
 #### scripts.js
 
@@ -128,7 +135,8 @@ function getData() {
 # WORKING WITH THE JSON RESPONSE
 Now we've received a response from our HTTP request, and we can work with it. However, the response is in JSON, and we need to convert that JSON in to JavaScript objects in order to work with it.
 
-We're going to use JSON.parse() to parse the response, and create a data variable that contains all the JSON as an array of JavaScript objects. Using forEach(), we'll console log out the title of each film to ensure it's working properly.
+We're going to use `JSON.parse()` to parse the response, and create a data variable that contains all the JSON as an array of JavaScript objects. 
+Using `forEach()`, we'll console log out the title of each film to ensure it's working properly.
 ```
 // Begin accessing JSON data here
 var data = JSON.parse(this.response)
@@ -138,9 +146,11 @@ data.forEach(movie => {
   console.log(movie.title)
 })
 ```
-Using Inspect on index.html and viewing the console, you should see the titles of 20 Ghibli films. Success!
+Using Inspect on `index.html` and viewing the console, you should see the titles of 20 Ghibli films. Success!
 
-The only thing we're missing here is some way to deal with errors. What if the wrong URL is used, or the URL broke and nothing was being displayed? When an HTTP request is made, the response returns with HTTP status codes. 404 is the most well-known response, meaning Not Found, and 200 OK is a successful request.
+The only thing we're missing here is some way to deal with errors. 
+What if the wrong URL is used, or the URL broke and nothing was being displayed? When an HTTP request is made, the response returns with HTTP status codes. 
+404 is the most well-known response, meaning Not Found, and 200 OK is a successful request.
 
 Let's just wrap our code in an if statement, succeeding on any response in the 200-300 range, and log out an error if the request fails. You can mess up the URL to test the error.
 
@@ -177,41 +187,48 @@ request.onload = function () {
 
 request.send()
 ```
-We've successfully used a GET HTTP request to retrieve (or consume) the API endpoint, which consisted of data in JSON format. However, we're still stuck in the console - we want to display this data on the front end of the website, which we'll do by modifying the DOM.
+We've successfully used a `GET HTTP` request to retrieve (or consume) the API endpoint, which consisted of data in JSON format. 
+However, we're still stuck in the console - we want to display this data on the front end of the website, which we'll do by modifying the DOM.
 
 # DISPLAYING THE DATA
-In order to display information on the front end of a site, we'll be working with the DOM, which is actually an API itself that allows JavaScript to communicate with HTML. If you have no experience at all with the DOM, I wrote Understanding and Modifying the DOM in JavaScript for DigitalOcean that will clarify what the DOM is and how the DOM differs from HTML source code.
+In order to display information on the front end of a site, we'll be working with the DOM, which is actually an API itself that allows JavaScript to communicate with HTML. 
+If you have no experience at all with the DOM, I wrote Understanding and Modifying the DOM in JavaScript for DigitalOcean that will clarify what the DOM is and how the DOM differs from HTML source code.
 
-By the end, our page will consist of a logo image followed by a container with multiple card elements - one for each film. Each card will have a heading and a paragraph, that contains the title and description of each film. Here's what that looks like, with only essential CSS loaded in:
+By the end, our page will consist of a logo image followed by a container with multiple card elements - one for each film. 
+Each card will have a heading and a paragraph, that contains the title and description of each film. 
 
 
-If you remember, our index.html just has a root div - <div id="root"> right now. We'll access it with getElementById(). We can briefly remove all the previous code we've written for now, which we'll add back in just a moment.
+If you remember, our `index.html` just has a root `div - <div id="root">` right now. We'll access it with `getElementById()`. 
+We can briefly remove all the previous code we've written for now, which we'll add back in just a moment.
 ```
 const app = document.getElementById('root')
 
 ```  
   
-If you're not 100% positive what getElementById() does, take the above code and console.log(app). That should help clarify what is actually happening there.
+If you're not 100% positive what `getElementById()` does, take the above code and `console.log(app)`. 
+That should help clarify what is actually happening there.
 
-The first thing in our website is the logo, which is an img element. We'll create the image element with createElement().
+The first thing in our website is the logo, which is an `img` element. 
+We'll create the image element with `createElement()`.
   
 ```
 const logo = document.createElement('img')
 
 ```
-An empty img is no good, so we'll set the src attribute to logo.png.
+An empty `img` is no good, so we'll set the src attribute to `logo.png`.
     
 ```
 logo.src = 'logo.png'
 
 ```
-We'll create another element, a div this time, and set the class attribute to container.
+We'll create another element, a `div` this time, and set the class attribute to container.
 ```
 const container = document.createElement('div')
 container.setAttribute('class', 'container')
 ```
   
-Now we have a logo and a container, and we just need to place them in the website. We'll use the appendChild() method to append the logo image and container div to the app root.
+Now we have a logo and a container, and we just need to place them in the website. 
+We'll use the `appendChild()` method to append the logo image and container `div` to the app root.
 ```
 app.appendChild(logo)
 app.appendChild(container)
@@ -241,9 +258,10 @@ After saving, on the front end of the website, you'll see the following.
   
 This will only be visible in the Inspect Elements tab, not in the HTML source code, as explained in the DOM article I linked.
 
-Now we're going to paste all our code from earlier back in. The last step will be to take what we consoled out previously and make them into card elements.
+Now we're going to paste all our code from earlier back in. 
+The last step will be to take what we consoled out previously and make them into card elements.
 
-Paste everything back in, but we'll just be looking at what's inside the forEach().
+Paste everything back in, but we'll just be looking at what's inside the `forEach(`).
   
 ```
 data.forEach(movie => {
@@ -252,7 +270,8 @@ data.forEach(movie => {
 })
 ```
   
-Instead of console.log, we'll use textContent to set the text of an HTML element to the data from the API. I'm using substring() on the p element to limit the description and keep each card equal length.  
+Instead of console.log, we'll use textContent to set the text of an HTML element to the data from the API.
+I'm using `substring()` on the `p` element to limit the description and keep each card equal length.  
   
 ```
 data.forEach(movie => {
@@ -277,14 +296,14 @@ data.forEach(movie => {
   card.appendChild(p)
 })
 ```
-I'll also replace the console'd error with an error on the front end, using the best HTML element, errormark! 
+I'll also replace the console'd error with an error on the front end, using the best HTML element, `errormark`! 
 
 ```
 const errorMessage = document.createElement('errormark')
 errorMessage.textContent = `Oops, it's not working!`
 app.appendChild(errorMessage)
 ```
-And we're done! Here is the final scripts.js code.
+And we're done! Here is the final `scripts.js` code.
 
 ```
 const app = document.getElementById('root')
@@ -330,7 +349,8 @@ request.send()
 ```
   
 # CONCLUSION
-Congratulations, you used plain JavaScript to connect to the API using HTTP requests. Hopefully you have a better understanding of what an API endpoint is, how the browser communicates with third-party API data with requests and responses, how to parse JSON into arrays and objects that JavaScript understands, and how to build a front end entirely with JavaScript.
+Congratulations, you used plain JavaScript to connect to the API using HTTP requests. 
+Hopefully you have a better understanding of what an API endpoint is, how the browser communicates with third-party API data with requests and responses, how to parse JSON into arrays and objects that JavaScript understands, and how to build a front end entirely with JavaScript.
 
 We did this all without having to worry about anything like Node.js, npm, Webpack, React, Angular, build tools, jQuery, Axios and other popular development terms, dependencies, and frameworks that may confuse you about what is happening under the hood in it's simplest form.  
 
