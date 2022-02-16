@@ -22,3 +22,14 @@ REST and RESTful APIs, is simply referring to a set of standards that conform to
 Most web apps do, or aim to conform to REST standards. 
 Overall, there are a lot of terms, acronyms and concepts to understand - HTTP, API, REST - so it's normal to feel confused and frustrated, 
 especially when API documentation assumes you already know what to do.
+
+# SETTING UP
+What is our objective? We want to get the data for all Studio Ghibli films and display the titles and descriptions in a grid. 
+For some background knowledge, Studio Ghibli is a Japanese animation studio that produced several films, such as Spirited Away,etc.
+
+We're going to start by creating an index.html file in a new directory. 
+The project will only consist of index.html, style.css, and scripts.js at the end. 
+This HTML skeleton just links to a CSS and JavaScript file, loads in a font, and contains a div with a root id. 
+This file is complete and will not change. We'll be using JavaScript to add everything from here out.
+
+### index.html
