@@ -32,4 +32,61 @@ The project will only consist of index.html, style.css, and scripts.js at the en
 This HTML skeleton just links to a CSS and JavaScript file, loads in a font, and contains a div with a root id. 
 This file is complete and will not change. We'll be using JavaScript to add everything from here out.
 
-### index.html
+#### index.html
+
+```
+
+```
+
+Since this article is focused on the concepts of APIs and JavaScript, I will not be explaining how the CSS works. We will create a style.css that will be used to create a grid. 
+
+#### style.css
+
+```
+
+```
+
+# CONNECTING TO THE API
+Let's take a look at the Studio Ghibli API documentation. This API was created to help developers learn how to interact with resources using HTTP requests, which is perfect for us here. Since an API can be accessed by many different methods - JavaScript, PHP, Ruby, Python and so on - the documentation for most APIs doesn't tend to give specific instructions for how to connect.
+
+We can see from this documentation that it tells us we can make requests with curl or regular REST calls, but we might not have a clue how to do that yet.
+
+# OBTAINING THE API ENDPOINT
+To get started, let's scroll to the films section. On the right you'll see `GET /films`. It will show us the URL of our API endpoint, https://ghibliapi.herokuapp.com/films. Clicking on that link will display an array of objects in JSON.
+
+If you do not have an extension on your browser for viewing JSON files, add one now, such as JSON View. This will make reading JSON much, much easier. Remember, if you've never worked with JSON, read this [prerequisite article]().
+
+# RETRIEVING THE DATA WITH AN HTTP REQUEST
+Before we try to put anything on the front end of the website, let's open a connection the API. We'll do so using XMLHttpRequest objects, which is a way to open files and make an HTTP request.
+
+We'll create a request variable and assign a new XMLHttpRequest object to it. Then we'll open a new connection with the open() method - in the arguments we'll specify the type of request as GET as well as the URL of the API endpoint. The request completes and we can access the data inside the onload function. When we're done, we'll send the request.
+
+#### scripts.js
+
+```
+
+```
+Alternatively, you can use the fetch API and async/await.
+```
+
+```
+# WORKING WITH THE JSON RESPONSE
+Now we've received a response from our HTTP request, and we can work with it. However, the response is in JSON, and we need to convert that JSON in to JavaScript objects in order to work with it.
+
+We're going to use JSON.parse() to parse the response, and create a data variable that contains all the JSON as an array of JavaScript objects. Using forEach(), we'll console log out the title of each film to ensure it's working properly.
+
+Using Inspect on index.html and viewing the console, you should see the titles of 20 Ghibli films. Success!
+
+The only thing we're missing here is some way to deal with errors. What if the wrong URL is used, or the URL broke and nothing was being displayed? When an HTTP request is made, the response returns with HTTP status codes. 404 is the most well-known response, meaning Not Found, and 200 OK is a successful request.
+
+Let's just wrap our code in an if statement, succeeding on any response in the 200-300 range, and log out an error if the request fails. You can mess up the URL to test the error.
+
+```
+
+```
+Here is the entire code so far.
+
+```
+
+```
+We've successfully used a GET HTTP request to retrieve (or consume) the API endpoint, which consisted of data in JSON format. However, we're still stuck in the console - we want to display this data on the front end of the website, which we'll do by modifying the DOM.
