@@ -90,3 +90,83 @@ Here is the entire code so far.
 
 ```
 We've successfully used a GET HTTP request to retrieve (or consume) the API endpoint, which consisted of data in JSON format. However, we're still stuck in the console - we want to display this data on the front end of the website, which we'll do by modifying the DOM.
+
+# DISPLAYING THE DATA
+In order to display information on the front end of a site, we'll be working with the DOM, which is actually an API itself that allows JavaScript to communicate with HTML. If you have no experience at all with the DOM, I wrote Understanding and Modifying the DOM in JavaScript for DigitalOcean that will clarify what the DOM is and how the DOM differs from HTML source code.
+
+By the end, our page will consist of a logo image followed by a container with multiple card elements - one for each film. Each card will have a heading and a paragraph, that contains the title and description of each film. Here's what that looks like, with only essential CSS loaded in:
+
+```
+
+```
+If you remember, our index.html just has a root div - <div id="root"> right now. We'll access it with getElementById(). We can briefly remove all the previous code we've written for now, which we'll add back in just a moment.
+
+```
+
+```
+  
+If you're not 100% positive what getElementById() does, take the above code and console.log(app). That should help clarify what is actually happening there.
+
+The first thing in our website is the logo, which is an img element. We'll create the image element with createElement().
+  
+```
+
+```
+An empty img is no good, so we'll set the src attribute to logo.png.
+    
+```
+
+```
+We'll create another element, a div this time, and set the class attribute to container.
+```
+
+```
+  
+Now we have a logo and a container, and we just need to place them in the website. We'll use the appendChild() method to append the logo image and container div to the app root.
+```
+
+```
+  
+Here is the full code for that.
+```
+
+```
+After saving, on the front end of the website, you'll see the following.
+
+```
+
+```
+  
+This will only be visible in the Inspect Elements tab, not in the HTML source code, as explained in the DOM article I linked.
+
+Now we're going to paste all our code from earlier back in. The last step will be to take what we consoled out previously and make them into card elements.
+
+Paste everything back in, but we'll just be looking at what's inside the forEach().
+  
+```
+
+```
+  
+Instead of console.log, we'll use textContent to set the text of an HTML element to the data from the API. I'm using substring() on the p element to limit the description and keep each card equal length.  
+  
+```
+
+```
+I'll also replace the console'd error with an error on the front end, using the best HTML element, marquee! (I'm only doing this as a joke for fun and demonstrative purposes, do not actually use marquee in any sort of real application, or take me seriously here.)
+
+```
+
+```
+And we're done! Here is the final scripts.js code.
+
+```
+
+```
+And with the full CSS styles, here is what the final product looks like.
+  
+# CONCLUSION
+Congratulations, you used plain JavaScript to connect to the API using HTTP requests. Hopefully you have a better understanding of what an API endpoint is, how the browser communicates with third-party API data with requests and responses, how to parse JSON into arrays and objects that JavaScript understands, and how to build a front end entirely with JavaScript.
+
+We did this all without having to worry about anything like Node.js, npm, Webpack, React, Angular, build tools, jQuery, Axios and other popular development terms, dependencies, and frameworks that may confuse you about what is happening under the hood in it's simplest form.  
+
+  
