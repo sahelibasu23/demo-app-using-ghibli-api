@@ -98,7 +98,7 @@ Since an API can be accessed by many different methods - JavaScript, PHP, Ruby, 
 We can see from this documentation that it tells us we can make requests with curl or regular REST calls, but we might not have a clue how to do that yet.
 
 # OBTAINING THE API ENDPOINT
-To get started, let's scroll to the films section. On the right you'll see `GET /films`. It will show us the URL of our API endpoint, https://ghibliapi.herokuapp.com/films. Clicking on that link will display an array of objects in `JSON`.
+To get started, let's scroll to the [films section](https://ghibliapi.herokuapp.com/#section/Helper-Libraries/Elixir). On the right you'll see `GET /films`. It will show us the URL of our API endpoint, https://ghibliapi.herokuapp.com/films. Clicking on that link will display an array of objects in `JSON`.
 
 If you do not have an extension on your browser for viewing `JSON` files, add one now, such as `JSON` View. This will make reading `JSON` much, much easier.
 
