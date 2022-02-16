@@ -221,7 +221,6 @@ If you remember, our `index.html` just has a root `div - <div id="root">` right 
 We can briefly remove all the previous code we've written for now, which we'll add back in just a moment.
 ```
 const app = document.getElementById('root')
-
 ```  
   
 If you're not 100% positive what `getElementById()` does, take the above code and `console.log(app)`. 
@@ -232,13 +231,11 @@ We'll create the image element with `createElement()`.
   
 ```
 const logo = document.createElement('img')
-
 ```
 An empty `img` is no good, so we'll set the src attribute to `logo.png`.
     
 ```
 logo.src = 'logo.png'
-
 ```
 We'll create another element, a `div` this time, and set the class attribute to container.
 ```
