@@ -58,6 +58,8 @@ Since this article is focused on the concepts of APIs and JavaScript,
 I will not be explaining how the CSS works. 
 We will create a style.css that will be used to create a grid. 
 
+*Only the structural sections are given below*
+
 #### style.css
 
 ```
