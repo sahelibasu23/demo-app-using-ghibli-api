@@ -32,7 +32,7 @@ request.onload = function () {
       card.appendChild(p);
     });
   } else {
-    const errorMessage = document.createElement('marquee');
+    const errorMessage = document.createElement('errormark');
     errorMessage.textContent = `Oops, it doesn't seem to work!`;
     app.appendChild(errorMessage);
   }
