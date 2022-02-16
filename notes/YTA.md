@@ -91,7 +91,7 @@ We will create a style.css that will be used to create a grid.
 
 # CONNECTING TO THE API
 
-Let's take a look at the [Studio Ghibli API documentation]().
+Let's take a look at the [Studio Ghibli API documentation](https://ghibliapi.herokuapp.com/).
 This API was created to help developers learn how to interact with resources using `HTTP` requests, which is perfect for us here. 
 Since an API can be accessed by many different methods - JavaScript, PHP, Ruby, Python and so on - the documentation for most APIs doesn't tend to give specific instructions for how to connect.
 
